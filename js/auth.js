@@ -1,18 +1,13 @@
-function login() {
-  const user = document.getElementById("username").value;
-  const pass = document.getElementById("password").value;
+export function login(username, password) {
+  const users = [
+    {user:"superadmin", pass:"1234", role:"SUPER"},
+    {user:"admin", pass:"1234", role:"ADMIN"},
+    {user:"finance", pass:"1234", role:"KEUANGAN"}
+  ];
 
-  if (user === "admin" && pass === "admin") {
-    localStorage.setItem("loginISP", true);
-    Swal.fire("Berhasil", "Login sukses", "success")
-      .then(() => location.href = "index.html");
-  } else {
-    Swal.fire("Gagal", "Username / Password salah", "error");
-  }
-}
+  const found = users.find(u => u.user === username && u.pass === password);
+  if (!found) return false;
 
-if (localStorage.getItem("loginISP")) {
-  if (location.pathname.includes("login")) {
-    location.href = "dashboard.html";
-  }
+  localStorage.setItem("auth", JSON.stringify(found));
+  return true;
 }
