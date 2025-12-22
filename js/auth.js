@@ -1,27 +1,17 @@
-function login() {
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value.trim();
+function login(){
+  const u = username.value.trim();
+  const p = password.value.trim();
 
-  if (!user || !pass) {
-    Swal.fire("Error", "Username & Password wajib diisi", "error");
-    return;
+  if(!u || !p){
+    return Swal.fire('Error','Wajib diisi','error');
   }
 
-  if (pass.length < 4) {
-    Swal.fire("Error", "Password minimal 4 karakter", "error");
-    return;
-  }
+  const admin = { username:'admin', password:'12345' };
 
-  if (user === "admin" && pass === "admin") {
-    localStorage.setItem("loginISP", "true");
-    Swal.fire("Berhasil", "Login sukses", "success")
-      .then(() => location.href = "index.html");
-  } else {
-    Swal.fire("Gagal", "Login tidak valid", "error");
+  if(u===admin.username && p===admin.password){
+    localStorage.setItem('login',true);
+    location.href='dashboard.html';
+  }else{
+    Swal.fire('Gagal','Login salah','error');
   }
-}
-
-/* Proteksi halaman */
-if (!localStorage.getItem("loginISP") && !location.pathname.includes("login")) {
-  location.href = "login.html";
 }
