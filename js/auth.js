@@ -13,6 +13,6 @@ function login() {
 
 if (localStorage.getItem("loginISP")) {
   if (location.pathname.includes("login")) {
-    location.href = "index.html";
+    location.href = "dashboard.html";
   }
 }
