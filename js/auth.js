@@ -5,7 +5,7 @@ function login() {
   if (user === "admin" && pass === "admin") {
     localStorage.setItem("loginISP", true);
     Swal.fire("Berhasil", "Login sukses", "success")
-      .then(() => location.href = "index.html");
+      .then(() => location.href = "dashboard.html");
   } else {
     Swal.fire("Gagal", "Username / Password salah", "error");
   }
